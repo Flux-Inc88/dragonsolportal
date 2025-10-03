@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DragonSol</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <!-- Meta -->
+  <meta name="title" content="DragonSol">
+  <meta name="description" content="DragonSol is a marketing company that will help you grow on X and a Play-to-Earn NFT project on Solana, inspired by Dragon Ball. It features stakeable NFTs like Goku and Bulma to earn $AKIRA tokens, with upcoming drops like Vegeta. Engage in battles, quests, and community events for rewards. With active giveaways and rewards for you for posting...">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dragonsol.fluxinc.io">
+  <meta property="og:title" content="$COLORS">
+  <meta property="og:description" content="DragonSol is a marketing company that will help you grow on X and a Play-to-Earn NFT project on Solana, inspired by Dragon Ball. It features stakeable NFTs like Goku and Bulma to earn $AKIRA tokens, with upcoming drops like Vegeta. Engage in battles, quests, and community events for rewards. With active giveaways and rewards for you for posting...">
+  <meta property="og:image" content="https://dragonsol.fluxinc.io/banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://dragonsol.fluxinc.io">
+  <meta name="twitter:title" content="$COLORS">
+  <meta name="twitter:description" content="DragonSol is a marketing company that will help you grow on X and a Play-to-Earn NFT project on Solana, inspired by Dragon Ball. It features stakeable NFTs like Goku and Bulma to earn $AKIRA tokens, with upcoming drops like Vegeta. Engage in battles, quests, and community events for rewards. With active giveaways and rewards for you for posting...">
+  <meta name="twitter:image" content="https://dragonsol.fluxinc.io/banner.png">
+
+  <style>
+    :root{
+      --white:#fff;
+      --muted:#888;
+      --dbz-orange:#FF7A00; /* Dragon Ball Z orange */
+      --panel-bg: rgba(10,12,16,0.55); /* dark translucent */
+      --panel-border: rgba(255,255,255,0.14);
+      --token-bg: rgba(10,12,16,0.40);
+    }
+
+    *{box-sizing:border-box}
+    html, body { height: 100%; }
+
+    body{
+      margin:0;
+      min-height:100dvh;
+      background:url('background.png') no-repeat center center fixed;
+      background-size:cover;
+      color:var(--white);
+      font-family:'Bebas Neue', sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* === Page-wide glass blur overlay === */
+    .bg-glass{
+      position: fixed;
+      inset: 0;
+      background: rgba(10,12,16,0.28);
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .bg-glass{ background: rgba(10,12,16,0.45); }
+    }
+
+    /* Top bar */
+    .top-bar{
+      position:fixed;
+      inset-block-start: max(20px, env(safe-area-inset-top));
+      inset-inline:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding-inline:16px;
+      z-index:10;
+      pointer-events:none;
+    }
+    .top-bar > *{pointer-events:auto;}
+
+    /* Token bar */
+    .token-bar{
+      width: min(760px, 92vw);
+      padding: 14px 16px 16px;
+      border-radius: 14px;
+      background: var(--token-bg);
+      border: 1px solid var(--panel-border);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      margin-top: 16px;
+      margin-bottom: 32px;
+    }
+    .token-bar .copy-label{ margin-bottom:8px; }
+
+    .top-logo{
+      position:fixed;
+      inset-block-start: max(20px, env(safe-area-inset-top));
+      left:50%;
+      translate:-50% 0;
+      width:96px; height:96px;
+      object-fit:contain;
+      pointer-events:none;
+    }
+
+    .social-icons{ display:flex; gap:20px; align-items:center; }
+    .social-icons img{ width:24px;height:24px;display:block; }
+
+    /* Center stack */
+    .center{
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-inline:16px;
+      width:100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Translucent panel wrapping the menu */
+    .panel{
+      width: 40%;
+      padding: 28px 24px 26px;
+      border-radius: 18px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      justify-content: center;
+      /* SHORTER HEIGHT */
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title{
+      font-size:28px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      margin: 0 0 18px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-family: "Saiyan Sans", sans-serif;
+      background: linear-gradient(90deg, #efdf2e 100%, #df1f2e 0%);
+    }
+
+.footer{
+  color: var(--white) !important;
+  font-size: 14px;            /* bump to 16px if you want bigger */
+}
+    /* Links section (inside panel) */
+    .links{ margin-bottom:10px; }
+    .menu{ display:flex; flex-direction:column; gap:14px; align-items:center; }
+    .menu a{
+      color:var(--white);
+      text-decoration:none;
+      font-size:18px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      transition: transform .25s ease, color .25s ease;
+      cursor:pointer; transform:scale(1);
+      will-change: transform;
+    }
+    @media (hover:hover) and (pointer:fine){
+      .menu a:hover{ color: var(--dbz-orange); transform: scale(1.25); }
+    }
+    .menu a:focus-visible{ color: var(--dbz-orange); outline: none; }
+
+    /* Copy-to-clipboard */
+    .copy-wrap{ position:relative; width:100%; cursor:pointer; }
+    .copy-label, .copy-field, .copy-hint{ cursor:pointer; }
+    .copy-label{
+      display:block; margin-bottom:6px; font-size:14px; color:var(--white);
+      letter-spacing:.5px; text-transform:uppercase; text-align:center;
+    }
+    .copy-field{
+      width:100%; padding:12px 14px;
+      border:1px solid #ffffff33; background:rgba(255,255,255,0.06);
+      color:var(--white); border-radius:10px; font-family:'Bebas Neue', sans-serif;
+      font-size:18px; letter-spacing:1px; text-transform:uppercase; text-align:center;
+      user-select:all; transition: background .2s ease, border-color .2s ease;
+    }
+    .token-bar .copy-wrap:hover .copy-field{ background:rgba(255,255,255,0.1); border-color:#ffffff55; }
+    .copy-hint{
+      margin-top:6px; font-size:12px; color:var(--muted);
+      letter-spacing:.5px; text-transform:uppercase; text-align:center;
+    }
+    .copied{
+      position:absolute; inset-inline-end:12px; inset-block-start:50%;
+      transform:translateY(-50%); font-size:12px; color:#2dd36f; opacity:0;
+      transition:opacity .25s ease; pointer-events:none; text-transform:uppercase; letter-spacing:.5px;
+    }
+    .copied.show{ opacity:1; }
+
+    .footer{
+      position:fixed; bottom: max(24px, env(safe-area-inset-bottom));
+      left:50%; translate:-50% 0;
+      font-size:12px; color:var(--muted); letter-spacing:.5px;
+      text-transform:uppercase; padding-inline:12px; text-align:center; z-index:5;
+    }
+
+    /* ===== Responsive tweaks ===== */
+    @media (max-width: 767.98px){
+      body{ background-attachment: scroll; background-position: center top; }
+      .top-logo{ width:72px; height:72px; }
+      .center{ margin-top: calc(72px + 40px); }
+      .panel{ padding:22px 16px 20px; }
+      .title{ font-size:24px; }
+    }
+
+    @media (min-width:768px){
+      .top-bar{ padding-inline:32px; }
+      .project-name{font-size:58px}
+      .title{font-size:32px}
+      .menu a{font-size:20px}
+      .center{ margin-top: 120px; }
+    }
+
+    @media (max-height: 640px){
+      .center{ padding-block: 16px; }
+    }
+
+    /* ========= CUSTOM ADDITIONS (drop-in) ========= */
+    @font-face{
+      font-family: "Saiyan Sans";
+      src: url("Saiyan-Sans.ttf") format("truetype"),
+           url("Saiyan-Sans.tff") format("truetype");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    /* Override header font/gradient and remove animation */
+    .project-name{
+      font-family: "Saiyan Sans", sans-serif;
+      background: linear-gradient(90deg, #efdf2e 68%, #df1f2e 32%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: none !important;
+      background-size: 100% 100%;
+      background-position: 0 0;
+    }
+    .title{
+      font-family: "Saiyan Sans", sans-serif;
+      background: linear-gradient(90deg, #efdf2e 100%, #df1f2e 0%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 100% 100%;
+      background-position: 0 0;
+    }
+
+    /* NEW: big page title OUTSIDE the panel */
+    .page-title{
+      font-family: "Saiyan Sans", sans-serif;
+      font-size: clamp(36px, 6.5vw, 64px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 0 10px; /* space above the panel */
+      background: linear-gradient(90deg, #efdf2e 100%, #df1f2e 0%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page-wide blur layer -->
+  <div class="bg-glass" aria-hidden="true"></div>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="project-name">DragonSol</div>
+    <img src="logo.png" alt="DragonSol Logo" class="top-logo" />
+    <div class="social-icons"></div>
+  </div>
+
+  <!-- Center content -->
+  <main class="center" role="main">
+    <!-- Title moved OUTSIDE the card -->
+    <h1 class="page-title">THE DRAGONSOL PORTAL</h1>
+
+    <section class="panel" aria-label="Main navigation">
+      <!-- (title removed from inside the panel) -->
+      <div class="links">
+        <nav class="menu" aria-label="Main">
+          <a href="/team" target="_blank" rel="noopener noreferrer">Meet the Team</a>
+          <a href="https://colorstaking.fluxinc.io/" target="_blank" rel="noopener noreferrer">Staking</a>
+          <a href="https://magiceden.io/marketplace/goku_nft" target="_blank" rel="noopener noreferrer">Goku Collection</a>
+          <a href="https://magiceden.io/marketplace/bulma_nft" target="_blank" rel="noopener noreferrer">Bluma Collection</a>
+          <a href="https://www.launchmynft.io/mint/vegeta-nft" target="_blank" rel="noopener noreferrer">Vegeta Collection - Mint LIVE!</a>
+          <a href="https://x.com/AKIRADragonSol" target="_blank" rel="noopener noreferrer">X.com</a>
+          <a href="https://discord.gg/za7aN9jzwD" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://t.me/Akirasoll" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="https://dexscreener.com/solana/FqSkp1BxNKEaLeyZPA7REd47aQMDUzz8fsg1f3rtKrJh" target="_blank" rel="noopener noreferrer">Akira Dex</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Token address: its own transparent bar at the bottom -->
+    <section class="token-bar" aria-label="Akira token address">
+      <div class="copy-wrap" id="copyBox">
+        <label for="copyField" class="copy-label">Akira Token Address</label>
+        <input id="copyField" class="copy-field" value="FqSkp1BxNKEaLeyZPA7REd47aQMDUzz8fsg1f3rtKrJh" readonly aria-label="Copy to clipboard" />
+        <span class="copied" id="copiedMsg">Copied!</span>
+        <div class="copy-hint">Click to copy</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">DragonSol Unite!</div>
+
+  <script>
+    (function(){
+      const box = document.getElementById('copyBox');
+      const input = document.getElementById('copyField');
+      const toast = document.getElementById('copiedMsg');
+      let t;
+
+      function copyNow(){
+        input.select();
+        input.setSelectionRange(0, 99999);
+        try { navigator.clipboard.writeText(input.value); }
+        catch (e) { document.execCommand && document.execCommand('copy'); }
+        toast.classList.add('show');
+        clearTimeout(t);
+        t = setTimeout(()=>toast.classList.remove('show'), 1200);
+      }
+
+      box.addEventListener('click', copyNow);
+      input.addEventListener('keydown', (e)=> {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyNow(); }
+      });
+    })();
+  </script>
+</body>
+</html>
