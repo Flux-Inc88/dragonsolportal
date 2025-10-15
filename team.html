@@ -15,6 +15,8 @@
       --muted:#a7a7a7;
       --dbz-orange:#FF7A00; /* Dragon Ball Z orange */
       --bg: #0b0b0f;
+      --header-offset: clamp(120px, 18vh, 176px);
+      --footer-offset: clamp(96px, 16vh, 144px);
     }
 
     *{ box-sizing:border-box }
@@ -28,11 +30,13 @@
       font-family: 'Bebas Neue', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-
-      /* center everything */
-      display:grid;
-      place-items: start center;  /* top + centered */
-    padding: 200px 16px calc(96px + env(safe-area-inset-bottom));
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding-block-start: calc(var(--header-offset) + env(safe-area-inset-top));
+      padding-block-end: calc(var(--footer-offset) + env(safe-area-inset-bottom));
+      padding-inline: clamp(16px, 4vw, 32px);
+      gap: clamp(32px, 6vh, 56px);
     }
 /* Page-wide glass blur overlay */
 .bg-glass{
@@ -54,11 +58,12 @@
 
     /* Page wrapper to keep content nicely centered on all sizes */
     .page{
-      width: min(1100px, 92vw);
+      width: min(960px, 100%);
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 28px;
+      gap: clamp(24px, 5vh, 48px);
+      margin: 0 auto;
     }
 
     /* Optional page title */
@@ -142,11 +147,11 @@
 .top-bar{
   position: fixed;
   inset-block-start: max(20px, env(safe-area-inset-top));
-  inset-inline: 0;
+  inset-inline: clamp(12px, 4vw, 32px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 16px;
+  gap: 16px;
   z-index: 10;                 /* above bg blur */
   pointer-events: none;
 }
@@ -183,19 +188,26 @@
 
 /* Optional: keep content clear of the logo on small screens */
 @media (max-width: 767.98px){
+  body{
+    background-attachment: scroll;
+    background-position: center top;
+    gap: 32px;
+  }
+  .top-bar{ inset-inline: clamp(12px, 6vw, 20px); }
   .top-logo{ width: 72px; height: 72px; }
-  .page{ margin-top: calc(72px + 40px); }
-  .title{ font-size:24px; }
-  
+  .page{ width: min(520px, 100%); }
+  .team-panel{ width: 100%; padding: 22px 18px; }
 }
 @media (min-width: 768px){
-  .page{ margin-top: 120px; }
+  .top-bar{ inset-inline: clamp(24px, 6vw, 64px); }
   .project-name{font-size:58px}
-  .top-bar{ padding-inline:32px; }
+}
+@media (max-height: 640px){
+  body{ gap: 24px; }
 }
 /* Glass panel behind team images only */
 .team-panel{
-  width: 70%;
+  width: clamp(320px, 70%, 720px);
   padding: 28px 24px;
   border-radius: 18px;
   background: rgba(10,12,16,0.50);
@@ -219,12 +231,9 @@
       background-clip: text;
       color: transparent;
     }
-    /* tighter gap between "Meet the Team" and the panel */
-.page{ gap: 10px; }          /* was 28px */
-
-/* remove extra margins just in case */
-.page-title{ margin-bottom: 0; }
-.team-panel{ margin-top: 0; padding-top: 16px; }  /* was 28px; optional */
+    /* remove extra margins just in case */
+    .page-title{ margin-bottom: 0; }
+    .team-panel{ margin-top: 0; padding-top: 16px; }  /* was 28px; optional */
 /* Footer */
 .footer{
   position: fixed;
@@ -232,16 +241,17 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;                 /* above the blur overlay */
-  color: var(--white);        /* white font */
-  font-size: 14px;            /* a little larger; tweak as you like */
+  color: var(--muted);
+  font-size: 12px;
   letter-spacing: .5px;
   text-transform: uppercase;
   opacity: .95;
   text-align: center;
   padding: 0 12px;            /* keeps long text from touching edges */
+  white-space: nowrap;
 }
 /* Reserve scroll space so the fixed footer never covers the panel */
-.team-panel{ margin-bottom: 120px; }   /* tweak 100–140px to taste */
+.team-panel{ margin-bottom: calc(var(--footer-offset) - 16px); }
 
   </style>
 </head>

@@ -33,6 +33,8 @@
       --panel-bg: rgba(10,12,16,0.55); /* dark translucent */
       --panel-border: rgba(255,255,255,0.14);
       --token-bg: rgba(10,12,16,0.40);
+      --header-offset: clamp(120px, 18vh, 176px);
+      --footer-offset: clamp(96px, 16vh, 144px);
     }
 
     *{box-sizing:border-box}
@@ -46,8 +48,12 @@
       color:var(--white);
       font-family:'Bebas Neue', sans-serif;
       display:flex;
+      flex-direction:column;
       align-items:center;
-      justify-content:center;
+      padding-block-start: calc(var(--header-offset) + env(safe-area-inset-top));
+      padding-block-end: calc(var(--footer-offset) + env(safe-area-inset-bottom));
+      padding-inline: clamp(16px, 4vw, 32px);
+      gap: clamp(32px, 6vh, 56px);
       text-rendering:optimizeLegibility;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
@@ -72,11 +78,11 @@
     .top-bar{
       position:fixed;
       inset-block-start: max(20px, env(safe-area-inset-top));
-      inset-inline:0;
+      inset-inline: clamp(12px, 4vw, 32px);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding-inline:16px;
+      gap:16px;
       z-index:10;
       pointer-events:none;
     }
@@ -84,7 +90,7 @@
 
     /* Token bar */
     .token-bar{
-      width: min(760px, 92vw);
+      width: min(520px, 100%);
       padding: 14px 16px 16px;
       border-radius: 14px;
       background: var(--token-bg);
@@ -116,15 +122,16 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      padding-inline:16px;
-      width:100%;
+      width: min(640px, 100%);
+      margin: 0 auto;
       position: relative;
       z-index: 2;
+      gap: clamp(24px, 5vh, 48px);
     }
 
     /* Translucent panel wrapping the menu */
     .panel{
-      width: 40%;
+      width: clamp(320px, 42vw, 520px);
       padding: 28px 24px 26px;
       border-radius: 18px;
       background: var(--panel-bg);
@@ -151,10 +158,6 @@
       background: linear-gradient(90deg, #efdf2e 100%, #df1f2e 0%);
     }
 
-.footer{
-  color: var(--white) !important;
-  font-size: 14px;            /* bump to 16px if you want bigger */
-}
     /* Links section (inside panel) */
     .links{ margin-bottom:10px; }
     .menu{ display:flex; flex-direction:column; gap:14px; align-items:center; }
@@ -204,27 +207,34 @@
       left:50%; translate:-50% 0;
       font-size:12px; color:var(--muted); letter-spacing:.5px;
       text-transform:uppercase; padding-inline:12px; text-align:center; z-index:5;
+      white-space: nowrap;
     }
 
     /* ===== Responsive tweaks ===== */
     @media (max-width: 767.98px){
-      body{ background-attachment: scroll; background-position: center top; }
+      body{
+        background-attachment: scroll;
+        background-position: center top;
+        gap: 32px;
+      }
+      .top-bar{ inset-inline: clamp(12px, 6vw, 20px); }
       .top-logo{ width:72px; height:72px; }
-      .center{ margin-top: calc(72px + 40px); }
-      .panel{ padding:22px 16px 20px; }
+      .center{ width: min(520px, 100%); }
+      .panel{ width: 100%; padding:22px 18px 20px; }
+      .token-bar{ width: 100%; }
       .title{ font-size:24px; }
+      .copy-field{ font-size:16px; }
     }
 
     @media (min-width:768px){
-      .top-bar{ padding-inline:32px; }
+      .top-bar{ inset-inline: clamp(24px, 6vw, 64px); }
       .project-name{font-size:58px}
       .title{font-size:32px}
       .menu a{font-size:20px}
-      .center{ margin-top: 120px; }
     }
 
     @media (max-height: 640px){
-      .center{ padding-block: 16px; }
+      body{ gap: 24px; }
     }
 
     /* ========= CUSTOM ADDITIONS (drop-in) ========= */
