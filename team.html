@@ -14,7 +14,6 @@
       --white:#fff;
       --muted:#a7a7a7;
       --dbz-orange:#FF7A00; /* Dragon Ball Z orange */
-      --bg: #0b0b0f;
       --header-offset: clamp(120px, 18vh, 176px);
       --footer-offset: clamp(96px, 16vh, 144px);
     }
@@ -25,7 +24,12 @@
     body{
       margin:0;
       min-height:100dvh;
-      background: var(--bg) url('background.png') no-repeat center/cover fixed;
+      background-color: #05060a;
+      background-image: url('background.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-attachment: fixed;
       color: var(--white);
       font-family: 'Bebas Neue', sans-serif;
       -webkit-font-smoothing: antialiased;
