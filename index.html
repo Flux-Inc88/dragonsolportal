@@ -33,7 +33,7 @@
       --panel-bg: rgba(10,12,16,0.55); /* dark translucent */
       --panel-border: rgba(255,255,255,0.14);
       --token-bg: rgba(10,12,16,0.40);
-      --header-offset: clamp(110px, 17vh, 168px);
+      --header-offset: clamp(128px, 18vh, 192px);
       --footer-offset: clamp(56px, 12vh, 92px);
     }
 
@@ -78,13 +78,17 @@
     .top-bar{
       position:fixed;
       inset-block-start: max(20px, env(safe-area-inset-top));
-      inset-inline: clamp(12px, 4vw, 32px);
+      inset-inline:auto;
+      left:50%;
+      translate:-50% 0;
+      width:min(640px, calc(100% - clamp(32px, 8vw, 96px)));
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
       z-index:10;
       pointer-events:none;
+      padding-inline: clamp(12px, 3vw, 28px);
     }
     .top-bar > *{pointer-events:auto;}
 
@@ -127,6 +131,7 @@
       position: relative;
       z-index: 2;
       gap: clamp(24px, 5vh, 48px);
+      padding-top: clamp(24px, 8vh, 56px);
     }
 
     /* Translucent panel wrapping the menu */
@@ -206,13 +211,10 @@
         background-attachment: scroll;
         background-position: center top;
         gap: 28px;
-        padding-block-start: calc(92px + env(safe-area-inset-top));
-        padding-block-end: calc(68px + env(safe-area-inset-bottom));
+        padding-block-start: calc(108px + env(safe-area-inset-top));
+        padding-block-end: calc(72px + env(safe-area-inset-bottom));
       }
       .top-bar{
-        inset-inline: auto;
-        left: 50%;
-        translate: -50% 0;
         width: min(520px, calc(100% - 32px));
         padding-inline: clamp(16px, 6vw, 24px);
       }
@@ -222,7 +224,7 @@
       .center{
         width: min(520px, 100%);
         gap: 24px;
-        margin-top: clamp(16px, 8vw, 36px);
+        padding-top: clamp(28px, 11vw, 72px);
       }
       .page-title{ margin: clamp(18px, 9vw, 36px) 0 12px; }
       .panel{ width: 100%; padding:22px 18px 20px; gap: 18px; }
