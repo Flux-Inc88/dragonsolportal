@@ -1,4 +1,8 @@
-
+diff --git a/index.html b/index.html
+index e1916a0d7fed1d705780ccabfb9d96635d6cf9b0..0649ddb8f43e9db84f92c02a2975af077db70511 100644
+--- a/index.html
++++ b/index.html
+@@ -11,242 +11,252 @@
    <!-- Google Fonts -->
    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
  
@@ -25,6 +29,7 @@
        --panel-border: rgba(255,255,255,0.14);
        --token-bg: rgba(10,12,16,0.40);
 +      --header-offset: clamp(120px, 18vh, 176px);
++      --footer-offset: clamp(96px, 16vh, 144px);
      }
  
      *{box-sizing:border-box}
@@ -42,7 +47,7 @@
        align-items:center;
 -      justify-content:center;
 +      padding-block-start: calc(var(--header-offset) + env(safe-area-inset-top));
-+      padding-block-end: calc(clamp(40px, 14vh, 88px) + env(safe-area-inset-bottom));
++      padding-block-end: calc(var(--footer-offset) + env(safe-area-inset-bottom));
 +      padding-inline: clamp(16px, 4vw, 32px);
 +      gap: clamp(32px, 6vh, 56px);
        text-rendering:optimizeLegibility;
@@ -203,13 +208,14 @@
      }
      .copied.show{ opacity:1; }
  
--    .footer{
--      position:fixed; bottom: max(24px, env(safe-area-inset-bottom));
--      left:50%; translate:-50% 0;
--      font-size:12px; color:var(--muted); letter-spacing:.5px;
--      text-transform:uppercase; padding-inline:12px; text-align:center; z-index:5;
--    }
--
+     .footer{
+       position:fixed; bottom: max(24px, env(safe-area-inset-bottom));
+       left:50%; translate:-50% 0;
+       font-size:12px; color:var(--muted); letter-spacing:.5px;
+       text-transform:uppercase; padding-inline:12px; text-align:center; z-index:5;
++      white-space: nowrap;
+     }
+ 
      /* ===== Responsive tweaks ===== */
      @media (max-width: 767.98px){
 -      body{ background-attachment: scroll; background-position: center top; }
@@ -266,56 +272,3 @@
        font-family: "Saiyan Sans", sans-serif;
        background: linear-gradient(90deg, #efdf2e 100%, #df1f2e 0%);
        -webkit-background-clip: text;
-@@ -293,52 +294,50 @@
-         <nav class="menu" aria-label="Main">
-           <a href="/team"> Meet the Team</a>
-           <a href="https://dragonsol.fluxinc.io/">Staking</a>
-           <a href="https://magiceden.io/marketplace/goku_nft" target="_blank" rel="noopener noreferrer">Goku Collection</a>
-           <a href="https://magiceden.io/marketplace/bulma_nft" target="_blank" rel="noopener noreferrer">Bulma Collection</a>
-           <a href="https://www.launchmynft.io/mint/vegeta-nft" target="_blank" rel="noopener noreferrer">Vegeta Collection - Mint LIVE!</a>
-           <a href="https://x.com/AKIRADragonSol" target="_blank" rel="noopener noreferrer">X.com</a>
-           <a href="https://discord.gg/za7aN9jzwD" target="_blank" rel="noopener noreferrer">Discord</a>
-           <a href="https://t.me/Akirasoll" target="_blank" rel="noopener noreferrer">Telegram</a>
-           <a href="https://dexscreener.com/solana/FqSkp1BxNKEaLeyZPA7REd47aQMDUzz8fsg1f3rtKrJh" target="_blank" rel="noopener noreferrer">Akira Dex</a>
-         </nav>
-       </div>
-     </section>
- 
-     <!-- Token address: its own transparent bar at the bottom -->
-     <section class="token-bar" aria-label="Akira token address">
-       <div class="copy-wrap" id="copyBox">
-         <label for="copyField" class="copy-label">Akira Token Address</label>
-         <input id="copyField" class="copy-field" value="FqSkp1BxNKEaLeyZPA7REd47aQMDUzz8fsg1f3rtKrJh" readonly aria-label="Copy to clipboard" />
-         <span class="copied" id="copiedMsg">Copied!</span>
-         <div class="copy-hint">Click to copy</div>
-       </div>
-     </section>
-   </main>
- 
--  <div class="footer">The Web3 Saiyans!</div>
--
-   <script>
-     (function(){
-       const box = document.getElementById('copyBox');
-       const input = document.getElementById('copyField');
-       const toast = document.getElementById('copiedMsg');
-       let t;
- 
-       function copyNow(){
-         input.select();
-         input.setSelectionRange(0, 99999);
-         try { navigator.clipboard.writeText(input.value); }
-         catch (e) { document.execCommand && document.execCommand('copy'); }
-         toast.classList.add('show');
-         clearTimeout(t);
-         t = setTimeout(()=>toast.classList.remove('show'), 1200);
-       }
- 
-       box.addEventListener('click', copyNow);
-       input.addEventListener('keydown', (e)=> {
-         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyNow(); }
-       });
-     })();
-   </script>
- </body>
- </html>
