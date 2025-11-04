@@ -245,12 +245,16 @@
       .copy-hint{ font-size:11px; }
     }
 
-    @media (min-width:768px){
-      .project-name{font-size:58px}
-      .title{font-size:32px}
-      .menu a{font-size:20px}
-    }
+@media (max-width: 767.98px){
+  .top-bar .project-name{ display:none; }
 
+  .top-logo{
+    width:72px;
+    height:72px;
+    top: 70%;                /* lower the logo on mobile */
+    transform: translate(-50%, -50%);
+  }
+}
     @media (max-height: 640px){
       body{ gap: 24px; }
     }
