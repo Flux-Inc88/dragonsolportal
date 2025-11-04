@@ -214,47 +214,39 @@
     }
     .copied.show{ opacity:1; }
 
-    /* ===== Responsive tweaks ===== */
-    @media (max-width: 767.98px){
-      body{
-        background-attachment: scroll;
-        background-position: center top;
-        gap: 28px;
-        padding-block-start: calc(108px + env(safe-area-inset-top));
-        padding-block-end: calc(72px + env(safe-area-inset-bottom));
-      }
-.top-bar{
-        width: min(520px, calc(100% - 32px));
-        padding-inline: clamp(16px, 6vw, 24px);
-      }
-      .top-bar .project-name{ display:none; }
-      .project-name{ font-size: clamp(36px, 8vw, 44px); }
-      .top-logo{ width:72px; height:72px; }
-      .center{
-        width: min(520px, 100%);
-        gap: 24px;
-        padding-top: clamp(28px, 11vw, 72px);
-      }
-      .page-title{ margin: clamp(18px, 9vw, 36px) 0 12px; }
-      .panel{ width: 100%; padding:22px 18px 20px; gap: 18px; }
-      .menu{ gap: 12px; }
-      .menu a{ font-size:16px; }
-      .token-bar{ width: 100%; padding: 12px 14px 14px; margin-top: 12px; margin-bottom: 24px; }
-      .copy-label{ font-size:12px; }
-      .copy-field{ font-size:16px; padding: 11px 12px; }
-      .copy-hint{ font-size:11px; }
-    }
-
 @media (max-width: 767.98px){
+  body{
+    background-attachment: scroll;
+    background-position: center top;
+    gap: 28px;
+    padding-block-start: calc(128px + env(safe-area-inset-top));
+    padding-block-end: calc(72px + env(safe-area-inset-bottom));
+  }
+
   .top-bar .project-name{ display:none; }
 
   .top-logo{
-    width:72px;
-    height:72px;
-    top: 70%;                /* lower the logo on mobile */
-    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    top: 110px;                  /* LOWER THE LOGO ON MOBILE */
+    transform: translateX(-50%); /* only center horizontally */
   }
+
+  .center{
+    width: min(520px, 100%);
+    gap: 24px;
+    padding-top: clamp(28px, 11vw, 72px);
+  }
+  .page-title{ margin: clamp(18px, 9vw, 36px) 0 12px; }
+  .panel{ width: 100%; padding:22px 18px 20px; gap: 18px; }
+  .menu{ gap: 12px; }
+  .menu a{ font-size:16px; }
+  .token-bar{ width: 100%; padding: 12px 14px 14px; margin-top: 12px; margin-bottom: 24px; }
+  .copy-label{ font-size:12px; }
+  .copy-field{ font-size:16px; padding: 11px 12px; }
+  .copy-hint{ font-size:11px; }
 }
+
     @media (max-height: 640px){
       body{ gap: 24px; }
     }
