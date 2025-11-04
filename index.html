@@ -75,22 +75,22 @@
     }
 
     /* Top bar */
-  .top-bar{
-  position:fixed;
+.top-bar{
+  position: fixed;
   inset-block-start: max(20px, env(safe-area-inset-top));
-  left:50%;
-  translate:-50% 0;
-  width:min(640px, calc(100% - clamp(32px, 8vw, 96px)));
-  display:grid;
+  inset-inline: auto; /* important so left:50% + translate work */
+  left: 50%;
+  translate: -50% 0;
+  width: min(640px, calc(100% - clamp(32px, 8vw, 96px)));
+  display: grid;
   grid-template-columns: 1fr auto 1fr; /* left – center – right */
-  align-items:center;
-  gap:16px;
-  z-index:10;
-  pointer-events:none;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+  pointer-events: none;
   padding-inline: clamp(12px, 3vw, 28px);
 }
-.top-bar > *{ pointer-events:auto; }
-
+.top-bar > * { pointer-events: auto; }
     /* Token bar */
     .token-bar{
       width: min(520px, 100%);
@@ -215,10 +215,7 @@
         padding-block-start: calc(108px + env(safe-area-inset-top));
         padding-block-end: calc(72px + env(safe-area-inset-bottom));
       }
-      .top-bar{
-        width: min(520px, calc(100% - 32px));
-        padding-inline: clamp(16px, 6vw, 24px);
-      }
+
       .top-bar .project-name{ display:none; }
       .project-name{ font-size: clamp(36px, 8vw, 44px); }
       .top-logo{ width:72px; height:72px; }
