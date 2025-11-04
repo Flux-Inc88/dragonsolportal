@@ -215,7 +215,10 @@
         padding-block-start: calc(108px + env(safe-area-inset-top));
         padding-block-end: calc(72px + env(safe-area-inset-bottom));
       }
-
+.top-bar{
+        width: min(520px, calc(100% - 32px));
+        padding-inline: clamp(16px, 6vw, 24px);
+      }
       .top-bar .project-name{ display:none; }
       .project-name{ font-size: clamp(36px, 8vw, 44px); }
       .top-logo{ width:72px; height:72px; }
