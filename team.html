@@ -263,23 +263,27 @@
 /* Optional: keep content clear of the logo on small screens */
 @media (max-width: 767.98px){
   body{
+    background-attachment: scroll;
+    background-position: center top;
     gap: 28px;
-    padding-block-start: calc(112px + env(safe-area-inset-top));
-    padding-block-end: calc(76px + env(safe-area-inset-bottom));
+    padding-block-start: calc(128px + env(safe-area-inset-top));
+    padding-block-end: calc(72px + env(safe-area-inset-bottom));
   }
   body::before{
     position:absolute;
     background-position: center top;
     pointer-events:none;
   }
+
   .top-bar .project-name{ display:none; }
-  .top-logo-link{ width: 72px; height: 72px; }
-  .top-logo{ 
-    width: 72px; 
-    height: 72px; 
+
+  .top-logo{
+    width: 72px;
+    height: 72px;
     top: 25px;                  /* LOWER THE LOGO ON MOBILE */
     transform: translateX(-50%); /* only center horizontally */
   }
+
   .top-logo-link{
     top: 25px;
     transform: translateX(-50%);
@@ -287,9 +291,9 @@
   .page{
     width: min(520px, 100%);
     gap: 24px;
-    padding-top: clamp(40px, 14vw, 84px);
+    padding-top: clamp(28px, 11vw, 72px);
   }
-  .page-title{ margin: 0 0 clamp(24px, 10vw, 52px); }
+  .page-title{ margin: clamp(18px, 9vw, 36px) 0 12px; }
   .team-panel{ width: 100%; padding: 22px 18px; }
   .name{ font-size: clamp(18px, 5vw, 22px); }
 }
