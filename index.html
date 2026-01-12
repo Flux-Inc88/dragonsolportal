@@ -93,9 +93,13 @@
   justify-content: space-between;          /* text left, icons right */
   padding-inline: clamp(16px, 4vw, 32px);  /* side padding */
   pointer-events: none;
+  transition: transform 0.3s ease-in-out;
 }
 .top-bar > *{
   pointer-events: auto;
+}
+.top-bar.hidden{
+  transform: translateY(calc(-100% - max(20px, env(safe-area-inset-top))));
 }
 
     /* Token bar */
@@ -141,6 +145,11 @@
   display: block;
   z-index: 11;
   border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.top-logo-link.hidden{
+  transform: translate(-50%, calc(-50% - 120px));
 }
 
 .top-logo-link:focus-visible{
@@ -452,6 +461,47 @@
       input.addEventListener('keydown', (e)=> {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyNow(); }
       });
+    })();
+
+    // Hide header on scroll down, show on scroll up
+    (function(){
+      const topBar = document.querySelector('.top-bar');
+      const logoLink = document.querySelector('.top-logo-link');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function updateHeader() {
+        const scrollY = window.scrollY;
+        
+        // Only hide after scrolling past a threshold (e.g., 100px)
+        if (scrollY > 100) {
+          if (scrollY > lastScrollY) {
+            // Scrolling down - hide header
+            topBar?.classList.add('hidden');
+            logoLink?.classList.add('hidden');
+          } else {
+            // Scrolling up - show header
+            topBar?.classList.remove('hidden');
+            logoLink?.classList.remove('hidden');
+          }
+        } else {
+          // Near top - always show
+          topBar?.classList.remove('hidden');
+          logoLink?.classList.remove('hidden');
+        }
+        
+        lastScrollY = scrollY;
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
     })();
   </script>
 </body>
